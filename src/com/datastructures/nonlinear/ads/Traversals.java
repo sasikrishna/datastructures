@@ -14,4 +14,12 @@ public class Traversals {
 			inorderTraversal(root.getRight());
 		}
 	}
+	
+	public static void inorderTraversalForRB(Node root){
+		if(root != null && !root.isNullLeaf()){
+			inorderTraversalForRB(root.getLeft());
+			System.out.print(root + " ");
+			inorderTraversalForRB(root.getRight());
+		}
+	}
 }
