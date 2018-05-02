@@ -21,6 +21,24 @@ import com.datastructures.nonlinear.ads.Node.Color;
  */
 public class RedBlackTree {
 	
+	public void search(Node root, int data){
+		if(root == null || root.isNullLeaf()){
+			System.out.println("\r\nRoot is null");
+			return;
+		}
+		
+		if(data == root.getValue()){
+			System.out.println(data + " node found");
+			return;
+		}
+		
+		if(data < root.getValue()){
+			search(root.getLeft(), data);
+		}else{
+			search(root.getRight(), data);
+		}
+	}
+	
 	public Node insertNode(Node root, int data) throws IllegalAccessException{
 		return insertNode(null, root, data);
 	}
@@ -465,5 +483,7 @@ public class RedBlackTree {
 		rootNode = tree.insertNode(rootNode, 17);
 		System.out.println("\r\nInserting node 17...");
 		Traversals.inorderTraversalForRB(rootNode);
+		System.out.println();
+		tree.search(rootNode, 50);
 	}
 }
