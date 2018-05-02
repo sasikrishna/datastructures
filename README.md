@@ -1,5 +1,6 @@
 # Data Structures
-<p>This project contains data structures implemented with java language. Below are the is of data structures that have been implemented.</p>
+<p>This project contains data structures implemented with java. Below are the list of data structures that have been implemented.</p>
 <ul>
-	<li>1. AVL trees</li>
+	<ol>AVL trees</ol>
+	<ol>Red Black trees</ol>
 </ul>
