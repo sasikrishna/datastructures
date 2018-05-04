@@ -99,7 +99,7 @@ public class HashMap<K, V> {
 		HashNode<K, V> node = bucketList.get(0);
 		
 		if(node == null){
-			bucketList.add(new HashNode<K, V>(null, value));
+			bucketList.set(0, new HashNode<K, V>(null, value));
 		}
 		else{
 			//Iterating through linked list for null key and replacing its value with new value
@@ -116,10 +116,83 @@ public class HashMap<K, V> {
 	}
 
 	public void remove(K key){
+		//Handling special case for null key to remove
+		if(null == key)
+		{
+			removeForNullKey(key);
+			return;
+		}
 		
+		int index = getBucketIndex(key);
+		HashNode<K, V> current = bucketList.get(index);
+		current = removeNode(current, key);
+		
+		//Set back head node into bucket
+		bucketList.set(index, current);
 	}
 	
+	private void removeForNullKey(K key) {
+		HashNode<K, V> current = bucketList.get(0);
+		
+		current = removeNode(current, key);
+		
+		//Set back head node into bucket
+		bucketList.set(0, current);
+	}
+	
+	/**
+	 * Internal method which actually removes node which matches to given key.
+	 * 
+	 * @param current
+	 * @return
+	 */
+	private HashNode<K, V> removeNode(HashNode<K, V> current, K k){
+		
+		if(null == current)
+			return current;
+		
+		HashNode<K, V> prev = null;
+		//Iterating through linked list for null key and replacing its value with new value
+		for(HashNode<K, V> temp = current;temp != null; temp = temp.nextNode){
+			
+			if(k == temp.key){
+				
+				if(prev != null){
+					prev.nextNode =temp.nextNode;
+				}else{
+					current = temp.nextNode;
+				}
+				temp = null;
+				break;
+			}
+			
+			prev = temp;
+		}
+		
+		this.size--;
+		
+		return current;
+	}
+
 	public V get(K key){
+		
+		if(null == key){
+			HashNode<K, V> node =  bucketList.get(0);
+			for(;node != null;node=node.nextNode){
+				if(null == node.key){
+					return node.value;
+				}
+			}
+		}
+		
+		int index = getBucketIndex(key);
+		HashNode<K, V> node = bucketList.get(index);
+		
+		for(;null != node;node=node.nextNode){
+			if(key.equals(node.key)){
+				return node.value;
+			}
+		}
 		
 		return null;
 	}
@@ -133,12 +206,13 @@ public class HashMap<K, V> {
 	}
 	
 	private int getBucketIndex(K key){
-		int hashCode = key.hashCode();
+		int hashCode = Math.abs(key.hashCode());
 		
 		//Compressor --> gets index for the value to sit in hash table
 		return hashCode % numberOfBuckets;
 	}
 	
+	@SuppressWarnings("hiding")
 	class HashNode<K, V>{
 		K key;
 		V value;
@@ -163,7 +237,6 @@ public class HashMap<K, V> {
 				tempNode = tempNode.nextNode;
 			}
 		}
-		
 		builder.append("]");
 		return builder.toString();
 	}
@@ -172,7 +245,28 @@ public class HashMap<K, V> {
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("one", 1);
 		map.put("two", 2);
+		map.put(null, 123);
+		System.out.println(map);
 		
+		map.remove(null);
+		System.out.println(map);
+		
+		map.put("adam", 11);
+		map.put("pete", 22);
+		map.put("john", 33);
+		map.put("rachel", 44);
+		map.put("smith", 55);
+		map.put("doug", 66);
+		map.put("hall", 77);
+		map.put("adrene", 88);
+		map.put("ajay", 99);
+		System.out.println(map);
+		
+		System.out.println("smith value: " + map.get("smith"));
+		System.out.println("ajay value: " + map.get("ajay"));
+		
+		map.remove("hall");
+		map.remove("adrene");
 		System.out.println(map);
 	}
 }
