@@ -21,6 +21,14 @@ public class BinaryTree {
 		
 	}
 	
+	public Node getRoot() {
+		return root;
+	}
+
+	public void setRoot(Node root) {
+		this.root = root;
+	}
+
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree();
 		
