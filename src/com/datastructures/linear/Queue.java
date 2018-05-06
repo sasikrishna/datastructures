@@ -3,9 +3,13 @@ package com.datastructures.linear;
 import java.util.Arrays;
 
 /**
- * <p><code>Queue</code> class represents queue data structure implementation containing methods enqueue to 
- * add objects into queue, dequeue to get first added element (FIFO) and other util methods like isEmpty and size.</p>
- * 
+ * <p>
+ *  <code>Queue</code> class represents queue data structure(first in first out) implementation containing methods enqueue to 
+ * 	add objects into queue, dequeue to get first added element (FIFO) and other util methods like isEmpty and size.
+ * </p>
+ * <p>
+ * 	
+ * </p>
  * @author Sasi on 06-May-2018, 12:51:12 PM
  */
 public class Queue<T> {

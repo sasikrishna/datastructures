@@ -2,7 +2,9 @@ package com.datastructures.nonlinear.ads;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.datastructures.nonlinear.ads.Node.Color;
+import com.datastructures.nonlinear.Node;
+import com.datastructures.nonlinear.Traversals;
+import com.datastructures.nonlinear.Node.Color;
 
 /**
  * Red black tree is self balancing binary search tree along with following properties.

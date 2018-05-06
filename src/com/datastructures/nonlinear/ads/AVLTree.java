@@ -1,5 +1,8 @@
 package com.datastructures.nonlinear.ads;
 
+import com.datastructures.nonlinear.Node;
+import com.datastructures.nonlinear.Traversals;
+
 /**
  * AVLTree is a self balanced binary search tree with height balancing factors -1, 0 and 1.
  * 

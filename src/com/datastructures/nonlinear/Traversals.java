@@ -1,4 +1,5 @@
-package com.datastructures.nonlinear.ads;
+package com.datastructures.nonlinear;
+
 
 /**
  * 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * <p>
- * 	<code>Stack</code> class represents last in first out data structure implementation.
+ * 	<code>Stack</code> class represents last in first out data structure implementation(last in first out).
  *  Backed by array data structure for storing object, <code>Stack</code> provides couple of methods listed below.
  *  <br>
  *  Push operation is insert elements into stack, pop is to remove top element return that element and peek is just to see the top element.
