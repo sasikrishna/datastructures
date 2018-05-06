@@ -3,6 +3,13 @@ package com.datastructures.linear;
 import java.util.ArrayList;
 
 /**
+ * <p>HashMap class is a implementation of HashMap data structure.
+ * Balance factor has been set to 0.7 so when size reaches to 70 percent of number of buckets, buckets list will be doubled and keys will be re-created.</p>
+ *
+ * <p>This HashMap implements separate chaining technique to handle collisions. That means each bucket contains linked list to store actual values to handle collisions.</p>
+ * 
+ * <p>Time complexities: adding - O(1), deletion - O(1) and remove - O(1) but in worst cases each operation may take O(n) because of collisions. 
+ * This can be reduced to O(logn) if we use AVL tree or RED-Black trees instead of linked lists to store values.</p>
  * 
  * @author Sasi on 03-May-2018, 8:08:11 pm
  */
