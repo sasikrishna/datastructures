@@ -4,9 +4,10 @@ import java.util.Random;
 
 
 /**
- * 
+ * <code>SkipList</code> class represents implementation of SkipList data structure. 
+ * <p>In traditional linked list data structure insert, delete and search takes O(n) time complexity. SkipList is a variant of linked list which offers O(logn) time complexity for all operations and O(n) in worst case.</p>
+ * <p>SkipList is probabilistic balancing data structure alternative to binary search trees(strict balancing data structure).</p>
  * @author Sasi on 09-May-2018, 12:53:45 am
- *
  */
 public class SkipList<K extends Comparable<K>, V> {
 
@@ -15,6 +16,10 @@ public class SkipList<K extends Comparable<K>, V> {
 	private int size;
 	private double probability;
 	
+	/**
+	 *  <code>Node</code> class represents each node linked list. Each node contains key, value of node, 
+	 *  in which level it exists, pointer to next node and pointer to child level.  
+	 */
 	private class Node{
 		private K key;
 		private V value;
@@ -38,8 +43,16 @@ public class SkipList<K extends Comparable<K>, V> {
 		probability = 0.5;
 	}
 
+	/**
+	 * getLevel() method returns level in which node insertion has to happened and from the insertion goes on 
+	 * untill they are no child level exists.  
+	 * @return
+	 */
 	private long getLevel(){
 		long level = 0;
+		
+		//New level should always be less than number of nodes we have in list 
+		//and generated random number should be less than .5 
 		while(level <= size && random.nextDouble() < probability){
 			level++;
 		}
@@ -47,10 +60,18 @@ public class SkipList<K extends Comparable<K>, V> {
 		return level;
 	}
 	
+	/**
+	 * Insert method inserts a new node with given key and value into list.
+	 * <p>Insert method starts by getting level value which decides from which level we need to insert nodes. Level creation is completely based on randomness so we may get existing level or could be a whole new level.</p>
+	 * <p>We'll iterate through head's next pointer and see if there is no next node (or) next node value is less than the value of node to be inserted. If so create new node and attach and let the flow to goto below level.</p>
+	 *
+	 * @param key
+	 * @param value
+	 */
 	public void insert(K key, V value){
 		
 		long level = getLevel();
-		System.out.println("getLevel(): " + level);
+		System.out.println("Node inserting at level: " + level);
 		if(level > head.level){
 			head = new Node(null, null, level, null, head);
 		}
