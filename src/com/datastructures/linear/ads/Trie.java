@@ -67,6 +67,47 @@ public class Trie {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param key
+	 */
+	public static void delete(String key){
+		delete(root, key, 0, key.length());
+	}
+	
+	private static boolean delete(TrieNode currentNode, String key, int level, int length) {
+		
+		if(null == currentNode){
+			return false;
+		}
+		
+		if(level == length){                 //Reached to last node in the key
+			currentNode.isEndOfWord = false;
+			if(hasNoChilds(currentNode)){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			TrieNode childNode = currentNode.trie[key.charAt(level) - 'a'];
+			boolean isChildDeleted = delete(childNode, key, level+1, length);
+			if(isChildDeleted){
+				return currentNode.isEndOfWord && hasNoChilds(currentNode);
+			}
+		}
+		
+		return false;
+	}
+
+	private static boolean hasNoChilds(TrieNode currentNode) {
+		for(int i=0;i<currentNode.trie.length;i++){
+			if(currentNode.trie[i]!=null){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		String[] keys = new String[]{"c", "cpp", "java", "python", "perl", "sql", "golang", "erlang"};
 		
@@ -79,5 +120,9 @@ public class Trie {
 		System.out.println("Erlang key exists: " + Trie.search("erlang"));
 		System.out.println("CPP key exists: " + Trie.search("cpp"));
 		System.out.println("Scala key exists: " + Trie.search("scala"));
+		
+		System.out.println("Deleting golang");
+		Trie.delete("golang");
+		System.out.println("golang key exists: " + Trie.search("golang"));
 	}
 }
