@@ -52,7 +52,6 @@ public class BinaryIndexedtree {
 		return index + (index & -index);
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "[" + Arrays.toString(tree) + "]";

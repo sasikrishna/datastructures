@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * <code>SegmentTree</code> class represents implementation of Segment tree data structure.
- * Below are use cases in which segment tree data structure is very help to achieve in good time complexity.
+ * Below are use cases in which segment tree data structure is very help to achieve with good time complexity.
  * 
  *  <p>1. Finding minimum number between given two indices<br>
  *     2. Finding sum between given two indices. 
@@ -38,7 +38,7 @@ public class SegmentTree {
 	 * Right child node: 2*n+2<br>
 	 * Parent node: (i-1)/2<br>
 	 * 
-	 * This method recursively calls itself to find out the value of child node and create them.<br>
+	 * This method recursively calls itself to find out the value of child node and creates them.<br>
 	 * 
 	 * <p>Because this is a range minimum query segment tree, we'll calculate minimum between two child nodes and make it as parent node.</p>
 	 * <p>If they are n elements in </p>
@@ -86,6 +86,8 @@ public class SegmentTree {
 		}else if(qLow > rootHigh || qHigh < rootLow){
 			return Integer.MAX_VALUE;
 		}else{
+			
+			//Traversing both left & right subtrees
 			int rootMid = (rootLow + rootHigh)/2;
 			return Math.min(findMinimum(2 * rootPosition + 1, rootLow, rootMid, qLow, qHigh),
 					findMinimum(2 * rootPosition + 2, rootMid + 1, rootHigh, qLow, qHigh));
