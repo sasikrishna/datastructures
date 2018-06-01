@@ -12,11 +12,11 @@ import java.util.Arrays;
  * </p>  
  * <p>
  * 	When <code>Stack</code> is initialized default array size 10.
- *  If it reached max length then we are doubling the array size to accomadate new insertions.
+ *  If it reached max length, then we are doubling the array size to accomodate new insertions.
  * </p>
  * @author Sasi on 06-May-2018, 11:10:43 am
  */
-public class Stack<T> {
+public class Stack<T>{
 	
 	//Base object to store all values inserted into stack
 	private Object[] stack; 
